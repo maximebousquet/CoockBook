@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IRecipeCategory } from './recipeCateogry';
 
 @Component({
   selector: 'cb-recipe-categories',
@@ -6,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recipe-categories.component.css']
 })
 export class RecipeCategoriesComponent implements OnInit {
-
   listTitle: string = "Recipes by categories";
-  categories: any[] = [
+
+  _categoryFilter: string;
+  get categoryFilter(): string{
+    return this._categoryFilter
+  }
+  set categoryFilter(value: string) {
+    this._categoryFilter = value;
+    this.filteredCategories = this.categoryFilter ? this.performFilter(this.categoryFilter) : this.categories;
+  }
+
+  filteredCategories: IRecipeCategory[];
+
+  categories: IRecipeCategory[] = [
     {
       "categoryId": 8,
       "categoryName": "Appetizers",
@@ -57,9 +69,42 @@ export class RecipeCategoriesComponent implements OnInit {
       "description": "The most conforting meal.",
       "thumbnail": "./assets/soup_thumbnail.jpeg"
     },
+    {
+      "categoryId": 2,
+      "categoryName": "Soups",
+      "description": "The most conforting meal.",
+      "thumbnail": "./assets/soup_thumbnail.jpeg"
+    },
+    {
+      "categoryId": 2,
+      "categoryName": "Soups",
+      "description": "The most conforting meal.",
+      "thumbnail": "./assets/soup_thumbnail.jpeg"
+    },
+    {
+      "categoryId": 2,
+      "categoryName": "Soups",
+      "description": "The most conforting meal.",
+      "thumbnail": "./assets/soup_thumbnail.jpeg"
+    },
+    {
+      "categoryId": 2,
+      "categoryName": "Soups",
+      "description": "The most conforting meal.",
+      "thumbnail": "./assets/soup_thumbnail.jpeg"
+    },
   ];
 
-  constructor() { }
+  constructor() { 
+    this.categoryFilter = "";
+    this.filteredCategories = this.categories;
+  }
+
+  performFilter(nameFilter: string): IRecipeCategory[] {
+    nameFilter = nameFilter.toLocaleLowerCase();
+    return this.categories.filter((category: IRecipeCategory) => 
+      category.categoryName.toLocaleLowerCase().indexOf(nameFilter) !== -1);
+  }
 
   ngOnInit() {
   }

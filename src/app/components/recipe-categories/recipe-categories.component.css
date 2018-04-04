@@ -1,0 +1,25 @@
+.recipeList{
+    background-color: rgb(245, 245, 245);
+    padding-bottom: 5em;
+    padding-top: 3em;
+}
+
+.filterBox, .headerInputBox, .headerFilterText, .headerTitle{
+    display: inline-block;
+}
+
+.headerTitle {
+    position: relative;
+    left: 20%;
+}
+
+.filterBox {
+    position: relative;
+    left: 41%;
+}
+
+.headerInputBox{
+    margin-left: 1em;
+    padding-left: 10px;
+    padding-right: 10px;
+}
